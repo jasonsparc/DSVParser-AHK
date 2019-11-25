@@ -111,6 +111,7 @@ loop, parse, % CSVParser2.qualifiers
 	Assert("foo" q "bar" == CSVParser2.FetchCell(q "foo" q q "bar" q "," q "Hello`nWorld" q), q)
 	Assert("Hello" q "World" == CSVParser2.FetchCell(q "foo`r`nbar" q "," q "Hello" q q "World" q, , 12), q)
 	Assert((q == "`r" ? "Hello" : "Hello`r`nWorld") == CSVParser2.FetchCell(q "foo,bar" q "," q "Hello`r`nWorld" q, , 11), q)
+	Assert((q == """" ? "HelloWorld""" : "Hello""World") == CSVParser2.FetchCell(q "foo,bar" q "," q "Hello""World" q, , 11), q)
 }
 
 Assert("Alice" == CSVParser2.FormatCell("Alice"))
