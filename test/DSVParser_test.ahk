@@ -42,9 +42,9 @@ Assert(isLastInRow)
 
 Assert(expected == TSVParser.FormatRow(TSVParser.FetchRow(sample)))
 
-Assert(expected == TSVParser.FromArray(TSVParser.ToArray(sample)))
-Assert(expected "`r`n" expected == TSVParser.FromArray(TSVParser.ToArray(sample sample)))
-Assert(expected "`r`n`t`t`r`n" expected == TSVParser.FromArray(TSVParser.ToArray(sample "`n" sample)))
+Assert(expected == TSVParser.FromArray(TSVParser.ToArray(sample), , false))
+Assert(expected "`r`n" expected == TSVParser.FromArray(TSVParser.ToArray(sample sample), , false))
+Assert(expected "`r`n`t`t`r`n" expected == TSVParser.FromArray(TSVParser.ToArray(sample "`n" sample), , false))
 
 ; -----------------------------------------------------------------------------
 ; Parsing tests: Normal DSV cells
