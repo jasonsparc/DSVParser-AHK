@@ -5,7 +5,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 #Include ..\DSVParser.ahk
 
-Progress, A T zh0 zx10 zy10 fs8 cwFFFFFF ct000000, Running tests...
+Progress, A M T zh0 zx10 zy10 fs8 cwFFFFFF ct000000, Running tests...
 
 ; -----------------------------------------------------------------------------
 ; Properties tests
