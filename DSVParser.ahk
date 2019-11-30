@@ -67,23 +67,31 @@ class DSVParser {
 	; -------------------------------------------------------------------------
 	; Methods
 
-	ToArray(InString) {
+	ToArray(InString, InitCapacity:=0) {
 		local ; --
 		dsvArr := []
+		if (InitCapacity)
+			dsvArr.SetCapacity(InitCapacity)
+
 		nextPos := 1
 		maxCols := 0
 
 		loop {
-			nextPos := this.NextRow(InString, row, nextPos)
+			nextPos := this.NextRow(InString, row, nextPos, maxCols)
 			cols := row.MaxIndex()
 			if (cols > maxCols)
 				maxCols := cols
 			dsvArr.Push(row)
 		} until !nextPos
 
-		for _, row in dsvArr
-			loop % maxCols - row.MaxIndex()
-				row.Push("") ; Append an empty cell
+		for _, row in dsvArr {
+			extraCols := maxCols - row.MaxIndex()
+			if (extraCols) {
+				row.SetCapacity(maxCols)
+				loop %extraCols%
+					row.Push("") ; Append an empty cell
+			}
+		}
 		return dsvArr
 	}
 
@@ -115,9 +123,12 @@ class DSVParser {
 	; The return value can be 0 to signal that the string was fully consumed
 	; and that there is nothing left to parse.
 	;
-	NextRow(InString, byref OutRow:="", StartingPos:=1) {
+	NextRow(InString, byref OutRow:="", StartingPos:=1, InitCapacity:=0) {
 		local ; --
 		OutRow := []
+		if (InitCapacity) {
+			OutRow.SetCapacity(InitCapacity)
+		}
 		loop {
 			StartingPos := this.NextCell(InString, cell, done, StartingPos)
 			OutRow.Push(cell)
@@ -125,9 +136,9 @@ class DSVParser {
 		return StartingPos
 	}
 
-	FetchRow(InString, byref InOutPos:=1) {
+	FetchRow(InString, byref InOutPos:=1, InitCapacity:=0) {
 		local ; --
-		InOutPos := this.NextRow(InString, row, InOutPos)
+		InOutPos := this.NextRow(InString, row, InOutPos, InitCapacity)
 		return row
 	}
 
