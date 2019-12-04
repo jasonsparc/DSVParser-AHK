@@ -38,7 +38,12 @@ parsed as `hello world "foo bar"`).
 ; Load a TSV data string
 FileRead, tsvStr, data.tsv
 
+Old_IsCritical := A_IsCritical
+Critical ; To improve performance, especially for very large DSV data strings
+
 MyTable := TSVParser.ToArray(tsvStr)
+
+Critical %Old_IsCritical% ; Restore old setting
 
 MsgBox % MyTable[2][1] ; Access 1st cell of 2nd row
 

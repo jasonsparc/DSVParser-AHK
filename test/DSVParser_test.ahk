@@ -6,6 +6,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #Include ..\DSVParser.ahk
 
 Progress, A M T zh0 zx10 zy10 fs8 cwFFFFFF ct000000, Running tests...
+Critical ; To improve performance, especially for very large DSV data strings
 
 ; -----------------------------------------------------------------------------
 ; Properties tests
