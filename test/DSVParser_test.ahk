@@ -47,6 +47,47 @@ Assert(expected == TSVParser.FromArray(TSVParser.ToArray(sample), , false))
 Assert(expected "`r`n" expected == TSVParser.FromArray(TSVParser.ToArray(sample sample), , false))
 Assert(expected "`r`n`t`t`r`n" expected == TSVParser.FromArray(TSVParser.ToArray(sample "`n" sample), , false))
 
+NQ_TSVParser := new DSVParser("`t", "")
+Assert(sample == NQ_TSVParser.FromArray(NQ_TSVParser.ToArray(sample)))
+
+; Empty strings
+
+Assert("" == TSVParser.FormatCell(TSVParser.FetchCell("", isLastInRow)))
+Assert(isLastInRow)
+
+Assert("" == TSVParser.FormatRow(TSVParser.FetchRow("")))
+Assert("" == TSVParser.FromArray(TSVParser.ToArray(""), , false))
+
+Assert("" == NQ_TSVParser.FromArray(NQ_TSVParser.ToArray(""), , false))
+
+; Single cells
+
+Assert("1" == TSVParser.FormatCell(TSVParser.FetchCell("1", isLastInRow)))
+Assert(isLastInRow)
+
+Assert("1" == TSVParser.FormatRow(TSVParser.FetchRow("1")))
+Assert("1" == TSVParser.FromArray(TSVParser.ToArray("1"), , false))
+
+Assert("1" == NQ_TSVParser.FromArray(NQ_TSVParser.ToArray("1"), , false))
+
+; Optional blank last line
+
+Assert("1" == TSVParser.FormatCell(TSVParser.FetchCell("1`r`n", isLastInRow, (inOutPos := 1))))
+Assert(isLastInRow && inOutPos == 0)
+
+Assert("1" == TSVParser.FormatRow(TSVParser.FetchRow("1`r`n", (inOutPos := 1))))
+Assert(inOutPos == 0)
+Assert("1	2" == TSVParser.FormatRow(TSVParser.FetchRow("1	2`r`n", (inOutPos := 1))))
+Assert(inOutPos == 0)
+Assert("1	2" == TSVParser.FormatRow(TSVParser.FetchRow("1	2`r`n`r`n", (inOutPos := 1))))
+Assert(inOutPos == 6)
+
+Assert("1`r`n" == TSVParser.FromArray(TSVParser.ToArray("1`r`n`r`n"), , false))
+Assert("1`r`n`r`n" == TSVParser.FromArray(TSVParser.ToArray("1`r`n`r`n")))
+
+Assert("1	2`r`n	" == TSVParser.FromArray(TSVParser.ToArray("1	2`r`n`r`n"), , false))
+Assert("1	2`r`n	`r`n" == TSVParser.FromArray(TSVParser.ToArray("1	2`r`n`r`n")))
+
 ; -----------------------------------------------------------------------------
 ; Parsing tests: Normal DSV cells
 
