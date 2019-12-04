@@ -183,7 +183,10 @@ class DSVParser {
 					. "(?P<Qualifier>" qs ")"
 					. "(?P<Qualified>(?:[^" qs "]|" qs qs ")*)"
 					. qs
-				. ")?" : ""))
+				. ")?" : ""
+					. "(?P<Qualifier>)"
+					. "(?P<Qualified>)"
+				. ""))
 				. "(?P<Delimited>[^" ds nl "]*)"
 				. "(?:"
 					. "(?P<Delimiter>[" ds "])"
