@@ -41,9 +41,12 @@ FileRead, tsvStr, data.tsv
 Old_IsCritical := A_IsCritical
 Critical ; To improve performance, especially for very large DSV data strings
 
+; Parse the TSV data string
 MyTable := TSVParser.ToArray(tsvStr)
 
 Critical %Old_IsCritical% ; Restore old setting
+
+; Do something with `MyTable`
 
 MsgBox % MyTable[2][1] ; Access 1st cell of 2nd row
 
