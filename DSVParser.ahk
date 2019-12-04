@@ -30,36 +30,36 @@ class DSVParser {
 
 	delimiters {
 		get {
-            return this.___delimiters
-        }
-        set {
+			return this.___delimiters
+		}
+		set {
 			return this.___delimiters ; NOP
 		}
 	}
 
 	qualifiers {
 		get {
-            return this.___qualifiers
-        }
-        set {
+			return this.___qualifiers
+		}
+		set {
 			return this.___qualifiers ; NOP
 		}
 	}
 
 	d {
 		get {
-            return this.___defaultDelimiter
-        }
-        set {
+			return this.___defaultDelimiter
+		}
+		set {
 			return this.___defaultDelimiter ; NOP
 		}
 	}
 
 	q {
 		get {
-            return this.___defaultQualifier
-        }
-        set {
+			return this.___defaultQualifier
+		}
+		set {
 			return this.___defaultQualifier ; NOP
 		}
 	}
