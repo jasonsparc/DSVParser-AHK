@@ -38,13 +38,8 @@ parsed as `hello world "foo bar"`).
 ; Load a TSV data string
 FileRead tsvStr, data.tsv
 
-Old_BatchLines := A_BatchLines
-SetBatchLines -1 ; To improve performance, especially for very large DSV data strings
-
 ; Parse the TSV data string
 MyTable := TSVParser.ToArray(tsvStr)
-
-SetBatchLines %Old_BatchLines% ; Restore old setting
 
 ; Do something with `MyTable`
 

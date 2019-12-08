@@ -69,6 +69,9 @@ class DSVParser {
 
 	ToArray(InString, InitCapacity:=0) {
 		local ; --
+		Old_BatchLines := A_BatchLines ; Backup old setting
+		SetBatchLines -1 ; Improve performance, especially for very large DSV data strings
+
 		dsvArr := []
 		if (InitCapacity)
 			dsvArr.SetCapacity(InitCapacity)
@@ -92,6 +95,8 @@ class DSVParser {
 					row.Push("") ; Append an empty cell
 			}
 		}
+
+		SetBatchLines %Old_BatchLines% ; Restore old setting
 		return dsvArr
 	}
 
@@ -122,6 +127,9 @@ class DSVParser {
 	;
 	; The return value can be 0 to signal that the string was fully consumed
 	; and that there is nothing left to parse.
+	;
+	; TIP: To improve performance use with `SetBatchLines -1` (see `ToArray()`
+	; for an example).
 	;
 	NextRow(InString, byref OutRow:="", StartingPos:=1, InitCapacity:=0) {
 		local ; --
@@ -161,6 +169,9 @@ class DSVParser {
 	;
 	; The output variable "OutIsLastInRow" will be set to true if the current
 	; cell being parsed was detected to be the last cell of the current row.
+	;
+	; TIP: To improve performance use with `SetBatchLines -1` (see `ToArray()`
+	; for an example).
 	;
 	NextCell(InString, byref OutCell:="", byref OutIsLastInRow:=false, StartingPos:=1) {
 		local ; --
