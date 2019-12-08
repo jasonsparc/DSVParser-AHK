@@ -36,7 +36,7 @@ parsed as `hello world "foo bar"`).
 
 ```AutoHotkey
 ; Load a TSV data string
-FileRead, tsvStr, data.tsv
+FileRead tsvStr, data.tsv
 
 Old_BatchLines := A_BatchLines
 SetBatchLines -1 ; To improve performance, especially for very large DSV data strings
@@ -55,8 +55,8 @@ MsgBox % MyTable[2][1] ; Access 1st cell of 2nd row
 ; Convert into a CSV, with custom line break settings
 csvStr := CSVParser.FromArray(MyTable, "`n", false)
 
-FileDelete, new-data.csv
-FileAppend, %csvStr%, *new-data.csv
+FileDelete new-data.csv
+FileAppend %csvStr%, *new-data.csv
 ```
 
 ### And there's more!
