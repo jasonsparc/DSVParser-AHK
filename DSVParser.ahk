@@ -216,7 +216,7 @@ class DSVParser {
 		; The above treatment is also the same as that of Microsoft Excel.
 
 		nextPos := found + StrLen(match)
-		if (matchDelimiter) {
+		if (StrLen(matchDelimiter)) {
 			; Found a delimiter. Therefore, there should be a next cell,
 			; even if it's an empty one.
 			OutIsLastInRow := false
