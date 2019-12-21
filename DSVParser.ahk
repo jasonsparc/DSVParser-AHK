@@ -15,7 +15,7 @@ class DSVParser {
 	__New(delimiters, qualifiers:="""") {
 		local ; --
 		if (StrLen(delimiters) <= 0)
-			throw Exception("No delimiter specified.")
+			throw Exception("No delimiter specified.", -1)
 
 		this.___delimiters := delimiters
 		this.___qualifiers := qualifiers
@@ -107,7 +107,7 @@ class DSVParser {
 		; - https://docs.python.org/3/library/stdtypes.html#str.splitlines
 		static matchList_ls := "`r,`n,`r`n,`n`r,`v,`f," chr(0x85) "," chr(0x1E) "," chr(0x1D) "," chr(0x1C) "," chr(0x2028) "," chr(0x2029)
 		if LineSeparator not in %matchList_ls%
-			throw Exception("Unsupported newline sequence.")
+			throw Exception("Unsupported newline sequence.", -1)
 
 		rows := DSVArray.MaxIndex()
 		Loop % rows - 1
