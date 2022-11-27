@@ -1,4 +1,5 @@
 ﻿; Simple DSV (e.g., CSV, TSV) parsing utilities.
+; https://www.autohotkey.com/boards/viewtopic.php?t=70425
 ;
 ; See also:
 ; - AutoHotkey's `Loop, Parse, _, CSV`
