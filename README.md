@@ -1,8 +1,14 @@
 # DSVParser-AHK
 
-A simple utility for parsing delimiter-separated values (i.e., DSV) in
-AutoHotkey scripts, whether that be comma-separated (i.e., CSV), tab-separated
+A simple utility for **reliably** parsing delimiter-separated values (i.e., DSV)
+in AutoHotkey v1 scripts, whether that be comma-separated (i.e., CSV), tab-separated
 (i.e., TSV), or something else, possibly even exotic ones.
+
+This is a tiny library for AutoHotkey v1. For AutoHotkey v2, check out,
+<https://github.com/jasonsparc/dsvparser-ahk2>
+
+Also, for the motivation behind the creation of this library, check out the
+forum post: “[[Library] DSV Parser - AutoHotkey Community](https://www.autohotkey.com/boards/viewtopic.php?t=70425)”
 
 ## Features
 
