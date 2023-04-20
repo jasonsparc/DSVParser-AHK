@@ -4,7 +4,7 @@ A simple utility for **reliably** parsing delimiter-separated values (i.e., DSV)
 in AutoHotkey v1 scripts, whether that be comma-separated (i.e., CSV), tab-separated
 (i.e., TSV), or something else, possibly even exotic ones.
 
-This is a tiny library for AutoHotkey v1. For AutoHotkey v2, check out,
+This is a small library for AutoHotkey v1. For AutoHotkey v2, check out,
 <https://github.com/jasonsparc/dsvparser-ahk2>
 
 Also, for the motivation behind the creation of this library, check out the
