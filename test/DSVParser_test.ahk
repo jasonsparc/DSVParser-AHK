@@ -23,6 +23,18 @@ Assert("'" == MSVParser.q)
 Assert("| `n" == MSVParser.delimiters)
 Assert("'""|```r`n" == MSVParser.qualifiers)
 
+; Test cached properties
+
+parser := CSVParser
+
+name := "FormatCell__matchList"
+Assert(!parser[name]), parser.FormatCell("Foo")
+Assert(parser[name])
+
+name := "NextCell__regex"
+Assert(!parser[name]), parser.NextCell("Foo")
+Assert(parser[name])
+
 ; -----------------------------------------------------------------------------
 ; Basic white-box tests
 
