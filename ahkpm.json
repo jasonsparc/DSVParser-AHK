@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "High-quality, simple DSV (e.g., CSV, TSV) parsing utilities for AutoHotkey scripts",
   "repository": "https://github.com/jasonsparc/DSVParser-AHK",
   "website": "https://www.autohotkey.com/boards/viewtopic.php?t=70425",
