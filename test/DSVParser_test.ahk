@@ -266,6 +266,20 @@ Assert(tsvData == TSVParser.FromArray(CSVParser.ToArray(csvData)))
 Assert(csvData == CSVParser.FromArray(TSVParser.ToArray(tsvData)))
 
 ; -----------------------------------------------------------------------------
+; Edge case: Text qualified by '0'
+
+ZQ_PSVParser := new DSVParser("|", "0") ; Using PSV as it's easier to visualize
+
+zq_sample := "12345|0hello|0world|`r`n"
+zq_expected := "12345|0hello|world0|"
+
+Assert(zq_expected == ZQ_PSVParser.FormatRow(ZQ_PSVParser.FetchRow(zq_sample)))
+
+Assert(zq_expected == ZQ_PSVParser.FromArray(ZQ_PSVParser.ToArray(zq_sample), , false))
+Assert(zq_expected "`r`n" zq_expected == ZQ_PSVParser.FromArray(ZQ_PSVParser.ToArray(zq_sample zq_sample), , false))
+Assert(zq_expected "`r`n||`r`n" zq_expected == ZQ_PSVParser.FromArray(ZQ_PSVParser.ToArray(zq_sample "`n" zq_sample), , false))
+
+; -----------------------------------------------------------------------------
 ; All tests ended
 
 Progress, Off
